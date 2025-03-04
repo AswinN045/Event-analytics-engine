@@ -56,7 +56,6 @@ export const getUserStats = catchAsync(async (req, res) => {
     res.json({
         event: eventName,
         count: totalEvents,
-        uniqueUsers: uniqueUsers,
         deviceData: deviceData
     });
 });

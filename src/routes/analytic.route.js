@@ -12,3 +12,56 @@ router.get('/event-summary', validateApiKey, validate(eventSummary), getEventSum
 router.get('/user-stats', validateApiKey, validate(userStats), getUserStats);
 
 export default router;
+
+/**
+ * @swagger
+ * tags:
+ *   name: Events
+ *   description: API for collecting and retrieving event analytics.
+ */
+
+/**
+ * @swagger
+ * /analytics/event-summary:
+ *   get:
+ *     summary: Get event summary data.
+ *     description: Retrieve aggregated analytics data based on event type.
+ *     tags: [Events]
+ *     parameters:
+ *       - in: query
+ *         name: event
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The event name (e.g., "click", "form_submit").
+ *     responses:
+ *       200:
+ *         description: Event analytics summary
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 event:
+ *                   type: string
+ *                   example: "click"
+ *                 count:
+ *                   type: integer
+ *                   example: 3400
+ *                 uniqueUsers:
+ *                   type: integer
+ *                   example: 1200
+ *                 deviceData:
+ *                   type: object
+ *                   properties:
+ *                     mobile:
+ *                       type: integer
+ *                       example: 2200
+ *                     desktop:
+ *                       type: integer
+ *                       example: 1200
+ *       400:
+ *         description: Bad request, missing or invalid parameters
+ *       500:
+ *         description: Internal server error
+ */

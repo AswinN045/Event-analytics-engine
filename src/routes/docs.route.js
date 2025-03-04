@@ -6,16 +6,11 @@ import swaggerDefinition from '../docs/swaggerDef.js';
 const router = Router();
 
 const specs = swaggerJsdoc({
-  swaggerDefinition,
-  apis: ['src/docs/*.yml', 'src/routes/*.js'],
+  definition: swaggerDefinition, 
+  apis: ['routes/*.js', 'docs/*.yml'], 
 });
 
-router.use('/', serve);
-router.get(
-  '/',
-  setup(specs, {
-    explorer: true,
-  })
-);
+
+router.use('/', serve, setup(specs));
 
 export default router;
